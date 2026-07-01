@@ -4,11 +4,21 @@ TxODDS/TxLINE HTTP + on-chain API client — fixtures, odds, scores, on-chain su
 
 ## Install
 
-```json
-"@swingkiddo/txodds-client": "github:swingkiddo/txodds-client"
+```bash
+npm install @swingkiddo/txodds-client
 ```
 
-No `.npmrc`, no tokens, no registry config. `npm install` clones from the public GitHub repo and builds automatically via the `prepare` script.
+Requires a one-time setup: add this line to your `~/.npmrc`:
+
+```
+@swingkiddo:registry=https://npm.pkg.github.com/
+```
+
+If you get a 401/403, generate a GitHub classic token with `read:packages` scope at https://github.com/settings/tokens and add it to `~/.npmrc`:
+
+```
+//npm.pkg.github.com/:_authToken=ghp_your_token_here
+```
 
 ## Quick Start
 
