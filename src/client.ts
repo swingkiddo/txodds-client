@@ -216,8 +216,14 @@ export class TxOddsClient {
     if (!res.ok) {
       throw new Error(`Token activation failed: ${res.status} ${await res.text()}`);
     }
-    const body = await res.json();
-    const token = body.token || body;
+    const text = await res.text();
+    let token: string;
+    try {
+      const body = JSON.parse(text);
+      token = body.token ?? body;
+    } catch {
+      token = text;
+    }
     this._apiToken = token;
     return token;
   }
