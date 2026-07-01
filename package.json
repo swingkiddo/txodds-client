@@ -1,5 +1,5 @@
 {
-  "name": "txodds-client",
+  "name": "@swingkiddo/txodds-client",
   "version": "0.1.0",
   "description": "TxODDS/TxLINE HTTP + on-chain API client — fixtures, odds, scores, subscription, and streams",
   "main": "dist/index.js",
@@ -7,6 +7,13 @@
   "files": ["dist/", "README.md"],
   "scripts": {
     "build": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swingkiddo/txodds-client.git"
   },
   "dependencies": {
     "@solana/spl-token": "^0.4.9",
