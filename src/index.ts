@@ -2,6 +2,7 @@ export { TxOddsClient } from "./client";
 export { TXODDS_CONFIG, SUBSCRIBE_DISCRIMINATOR, PDA_SEEDS } from "./config";
 export type { NetworkConfig } from "./config";
 export type {
+  Fixture,
   FixtureRecord,
   OddsRecord,
   OddsPayload,

@@ -15,7 +15,7 @@ import {
 import nacl from "tweetnacl";
 import { TXODDS_CONFIG, SUBSCRIBE_DISCRIMINATOR, PDA_SEEDS, NetworkConfig } from "./config";
 import {
-  FixtureRecord,
+  Fixture,
   OddsRecord,
   Scores,
   ScoresStatValidation,
@@ -264,7 +264,7 @@ export class TxOddsClient {
     return res.json();
   }
 
-  async getFixturesSnapshot(competitionId?: number): Promise<FixtureRecord[]> {
+  async getFixturesSnapshot(competitionId?: number): Promise<Fixture[]> {
     const params = competitionId !== undefined ? `?competitionId=${competitionId}` : "";
     return this._fetch(`/fixtures/snapshot${params}`);
   }

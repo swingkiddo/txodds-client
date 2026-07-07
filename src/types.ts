@@ -79,7 +79,7 @@ export interface SoccerFixturePlayerStats {
   Participant2: Record<string, SoccerPlayerStats>;
 }
 
-export interface FixtureRecord {
+export interface Fixture {
   FixtureId: number;
   StartTime: number;
   Participant1: string;
@@ -90,9 +90,10 @@ export interface FixtureRecord {
   Participant1Id: number;
   Participant2Id: number;
   FixtureGroupId: number;
-  Status: string;
   Ts: number;
 }
+
+export type FixtureRecord = Fixture;
 
 export interface OddsRecord {
   FixtureId: number;
