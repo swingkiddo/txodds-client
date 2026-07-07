@@ -168,21 +168,107 @@ export interface ScoresStatValidation {
   statToProve: ScoreStat;
   eventStatRoot: number[];
   summary: ScoresBatchSummary;
-  statProof: StatProofNode[];
-  subTreeProof: StatProofNode[];
-  mainTreeProof: StatProofNode[];
+  statProof: ProofNode[];
+  subTreeProof: ProofNode[];
+  mainTreeProof: ProofNode[];
   statToProve2?: ScoreStat;
-  statProof2?: StatProofNode[];
+  statProof2?: ProofNode[];
 }
 
 export type StatValidationResult = ScoresStatValidation;
 
 export type OddsPayload = OddsRecord;
 
-export interface StatProofNode {
+export interface ScoresStatValidationV2 {
+  ts: number;
+  statsToProve?: ScoreStat[];
+  eventStatRoot: number[];
+  summary: ScoresBatchSummary;
+  statProofs?: ProofNode[][];
+  subTreeProof: ProofNode[];
+  mainTreeProof: ProofNode[];
+}
+
+export interface FixtureUpdateStats {
+  updateCount: number;
+  minTimestamp: number;
+  maxTimestamp: number;
+}
+
+export interface FixtureBatchSummary {
+  fixtureId: number;
+  competitionId: number;
+  competition: string;
+  updateStats: FixtureUpdateStats;
+  updateSubTreeRoot: number[];
+}
+
+export interface FixtureValidation {
+  snapshot: Fixture;
+  summary: FixtureBatchSummary;
+  subTreeProof: ProofNode[];
+  mainTreeProof: ProofNode[];
+}
+
+export interface BatchMetadata {
+  totalUpdateCount: number;
+  numUniqueFixtures: number;
+  overallBatchStartTs: number;
+  overallBatchEndTs: number;
+}
+
+export interface FixtureBatchValidation {
+  metadata: BatchMetadata;
+  proof: ProofNode[];
+}
+
+export interface OddsUpdateStats {
+  updateCount: number;
+  minTimestamp: number;
+  maxTimestamp: number;
+}
+
+export interface OddsBatchSummary {
+  fixtureId: number;
+  updateStats: OddsUpdateStats;
+  oddsSubTreeRoot: number[];
+}
+
+export interface OddsValidation {
+  odds: OddsRecord;
+  summary: OddsBatchSummary;
+  subTreeProof: ProofNode[];
+  mainTreeProof: ProofNode[];
+}
+
+export interface TokenResponse {
+  token: string;
+}
+
+export interface ActivationPayload {
+  txSig: string;
+  walletSignature: string;
+  leagues: number[];
+}
+
+export interface PurchaseQuoteRequest {
+  buyerPubkey: string;
+  txlineAmount: number;
+}
+
+export interface PurchaseQuoteResponse {
+  transactionBase64: string;
+  baseUsdtCost: number;
+  feeUsdtAmount: number;
+  totalUsdtCharged: number;
+}
+
+export interface ProofNode {
   hash: number[];
   isRightSibling: boolean;
 }
+
+export type StatProofNode = ProofNode;
 
 export interface SseMessage {
   id?: string;
