@@ -26,6 +26,9 @@ import {
   SseMessage,
   SubscribeAccounts,
 } from "./types";
+import fs from "fs";
+import path from "path";
+import os from "os";
 
 export class TxOddsClient {
   readonly apiHost: string;
@@ -33,6 +36,7 @@ export class TxOddsClient {
   readonly config: NetworkConfig;
   private _jwt: string | null = null;
   private _apiToken: string | null = null;
+  readonly credentialsPath: string;
 
   constructor(apiHost: string);
   constructor(networkOrHost: string) {
@@ -51,6 +55,20 @@ export class TxOddsClient {
       };
     }
     this.apiBase = `${this.apiHost}/api`;
+    this.credentialsPath = path.join(os.homedir(), ".txodds", "credentials.json");
+    this._loadCredentials();
+  }
+
+  private _loadCredentials(): void {
+    try {
+      const data = fs.readFileSync(this.credentialsPath, "utf-8");
+      const parsed = JSON.parse(data);
+      if (parsed && typeof parsed.apiToken === "string") {
+        this._apiToken = parsed.apiToken;
+      }
+    } catch {
+      // File doesn't exist, unreadable, or malformed — continue silently
+    }
   }
 
   static forNetwork(network: "mainnet" | "devnet"): TxOddsClient {
