@@ -16,7 +16,6 @@ import nacl from "tweetnacl";
 import { TXODDS_CONFIG, SUBSCRIBE_DISCRIMINATOR, PDA_SEEDS, NetworkConfig } from "./config";
 import {
   Fixture,
-  OddsRecord,
   OddsPayload,
   Scores,
   ScoresStatValidation,
@@ -274,7 +273,7 @@ export class TxOddsClient {
     return this._fetch(`/fixtures/snapshot${params}`);
   }
 
-  async getOddsSnapshot(fixtureId: number): Promise<OddsRecord[]> {
+  async getOddsSnapshot(fixtureId: number): Promise<OddsPayload[]> {
     return this._fetch(`/odds/snapshot/${fixtureId}`);
   }
 
@@ -282,7 +281,7 @@ export class TxOddsClient {
     epochDay: number,
     hourOfDay: number,
     interval: number
-  ): Promise<OddsRecord[]> {
+  ): Promise<OddsPayload[]> {
     return this._fetch(`/odds/updates/${epochDay}/${hourOfDay}/${interval}`);
   }
 

@@ -93,9 +93,7 @@ export interface Fixture {
   Ts: number;
 }
 
-export type FixtureRecord = Fixture;
-
-export interface OddsRecord {
+export interface OddsPayload {
   FixtureId: number;
   MessageId: string;
   Ts: number;
@@ -143,8 +141,6 @@ export interface Scores {
   PlayerStats?: SoccerFixturePlayerStats;
 }
 
-export type ScoresRecord = Scores;
-
 export interface ScoreStat {
   key: number;
   value: number;
@@ -174,10 +170,6 @@ export interface ScoresStatValidation {
   statToProve2?: ScoreStat;
   statProof2?: ProofNode[];
 }
-
-export type StatValidationResult = ScoresStatValidation;
-
-export type OddsPayload = OddsRecord;
 
 export interface ScoresStatValidationV2 {
   ts: number;
@@ -235,7 +227,7 @@ export interface OddsBatchSummary {
 }
 
 export interface OddsValidation {
-  odds: OddsRecord;
+  odds: OddsPayload;
   summary: OddsBatchSummary;
   subTreeProof: ProofNode[];
   mainTreeProof: ProofNode[];
@@ -267,8 +259,6 @@ export interface ProofNode {
   hash: number[];
   isRightSibling: boolean;
 }
-
-export type StatProofNode = ProofNode;
 
 export interface SseMessage {
   id?: string;

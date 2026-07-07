@@ -3,15 +3,11 @@ export { TXODDS_CONFIG, SUBSCRIBE_DISCRIMINATOR, PDA_SEEDS } from "./config";
 export type { NetworkConfig } from "./config";
 export type {
   Fixture,
-  FixtureRecord,
-  OddsRecord,
   OddsPayload,
   Scores,
-  ScoresRecord,
   ScoreStat,
   ScoresStatValidation,
   ScoresStatValidationV2,
-  StatValidationResult,
   ScoresBatchSummary,
   ScoresUpdateStats,
   SoccerFixtureClock,
@@ -23,7 +19,6 @@ export type {
   SoccerPlayerStats,
   SoccerFixturePlayerStats,
   ProofNode,
-  StatProofNode,
   FixtureUpdateStats,
   FixtureBatchSummary,
   FixtureValidation,
