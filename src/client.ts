@@ -17,8 +17,8 @@ import { TXODDS_CONFIG, SUBSCRIBE_DISCRIMINATOR, PDA_SEEDS, NetworkConfig } from
 import {
   FixtureRecord,
   OddsRecord,
-  ScoresRecord,
-  StatValidationResult,
+  Scores,
+  ScoresStatValidation,
   SseMessage,
   SubscribeAccounts,
 } from "./types";
@@ -284,12 +284,12 @@ export class TxOddsClient {
   async getScoresSnapshot(
     fixtureId: number,
     asOf?: number
-  ): Promise<ScoresRecord[]> {
+  ): Promise<Scores[]> {
     const qs = asOf !== undefined ? `?asOf=${asOf}` : "";
     return this._fetch(`/scores/snapshot/${fixtureId}${qs}`);
   }
 
-  async getScoresUpdates(fixtureId: number): Promise<ScoresRecord[]> {
+  async getScoresUpdates(fixtureId: number): Promise<Scores[]> {
     return this._fetch(`/scores/updates/${fixtureId}`);
   }
 
@@ -297,11 +297,11 @@ export class TxOddsClient {
     epochDay: number,
     hourOfDay: number,
     interval: number
-  ): Promise<ScoresRecord[]> {
+  ): Promise<Scores[]> {
     return this._fetch(`/scores/updates/${epochDay}/${hourOfDay}/${interval}`);
   }
 
-  async getScoresHistorical(fixtureId: number): Promise<ScoresRecord[]> {
+  async getScoresHistorical(fixtureId: number): Promise<Scores[]> {
     return this._fetch(`/scores/historical/${fixtureId}`);
   }
 
@@ -310,7 +310,7 @@ export class TxOddsClient {
     seq: number,
     statKey: number,
     statKey2?: number
-  ): Promise<StatValidationResult> {
+  ): Promise<ScoresStatValidation> {
     let path = `/scores/stat-validation?fixtureId=${fixtureId}&seq=${seq}&statKey=${statKey}`;
     if (statKey2 !== undefined) path += `&statKey2=${statKey2}`;
     return this._fetch(path);

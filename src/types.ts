@@ -1,5 +1,84 @@
 import { PublicKey } from "@solana/web3.js";
 
+export interface SoccerFixtureClock {
+  Running: boolean;
+  Seconds: number;
+}
+
+export interface SoccerScore {
+  Goals?: number;
+  YellowCards?: number;
+  RedCards?: number;
+  Corners?: number;
+}
+
+export interface SoccerTotalScore {
+  H1?: SoccerScore;
+  HT?: SoccerScore;
+  H2?: SoccerScore;
+  ET1?: SoccerScore;
+  ET2?: SoccerScore;
+  PE?: SoccerScore;
+  ETTotal?: SoccerScore;
+  Total?: SoccerScore;
+}
+
+export interface SoccerFixtureScore {
+  Participant1: SoccerTotalScore;
+  Participant2: SoccerTotalScore;
+}
+
+export interface SoccerUpdateReference {
+  Clock?: SoccerFixtureClock;
+  FreeKickType?: string;
+  GoalType?: string;
+  Minutes?: number;
+  Outcome?: string;
+  PlayerId?: number;
+  PlayerInId?: number;
+  PlayerOutId?: number;
+  ThrowInType?: string;
+  Type?: string;
+}
+
+export interface SoccerData {
+  Action?: string;
+  Participant?: number;
+  PlayerId?: number;
+  GoalType?: string;
+  Outcome?: string;
+  FreeKickType?: string;
+  ThrowInType?: string;
+  Type?: string;
+  StatusId?: number;
+  Minutes?: number;
+  PlayerInId?: number;
+  PlayerOutId?: number;
+  Goal?: boolean;
+  Corner?: boolean;
+  Penalty?: boolean;
+  RedCard?: boolean;
+  YellowCard?: boolean;
+  VAR?: boolean;
+  New?: SoccerUpdateReference;
+  Previous?: SoccerUpdateReference;
+}
+
+export interface SoccerPlayerStats {
+  goals: number;
+  shots: number;
+  ownGoals: number;
+  penaltyAttempts: number;
+  penaltyGoals: number;
+  yellowCards: number;
+  redCards: number;
+}
+
+export interface SoccerFixturePlayerStats {
+  Participant1: Record<string, SoccerPlayerStats>;
+  Participant2: Record<string, SoccerPlayerStats>;
+}
+
 export interface FixtureRecord {
   FixtureId: number;
   StartTime: number;
@@ -28,44 +107,76 @@ export interface OddsRecord {
   MarketPeriod: string | null;
   PriceNames: string[];
   Prices: number[];
-  Pct: number[];
+  Pct: string[];
 }
 
-export interface ScoresRecord {
-  seq: number;
-  ts: number;
-  gameState: number;
-  homeScore: number;
-  awayScore: number;
-  stats: Record<number, number>;
+export interface Scores {
+  FixtureId: number;
+  GameState: string;
+  StartTime: number;
+  IsTeam: boolean;
+  FixtureGroupId: number;
+  CompetitionId: number;
+  CountryId: number;
+  SportId: number;
+  Participant1IsHome: boolean;
+  Participant2Id: number;
+  Participant1Id: number;
+  Action: string;
+  Id: number;
+  Ts: number;
+  ConnectionId: number;
+  Seq: number;
+  CoverageSecondaryData?: boolean;
+  CoverageType?: string;
+  StatusId?: number;
+  Type?: string;
+  Confirmed?: boolean;
+  Clock?: SoccerFixtureClock;
+  Score?: SoccerFixtureScore;
+  Data?: SoccerData;
+  Stats: Record<string, number>;
+  Participant?: number;
+  Possession?: number;
+  PossessionType?: string;
+  PlayerStats?: SoccerFixturePlayerStats;
+}
+
+export type ScoresRecord = Scores;
+
+export interface ScoreStat {
+  key: number;
+  value: number;
+  period: number;
+}
+
+export interface ScoresUpdateStats {
+  updateCount: number;
+  minTimestamp: number;
+  maxTimestamp: number;
+}
+
+export interface ScoresBatchSummary {
   fixtureId: number;
+  updateStats: ScoresUpdateStats;
+  eventStatsSubTreeRoot: number[];
 }
 
-export interface StatValidationResult {
+export interface ScoresStatValidation {
   ts: number;
-  statToProve: {
-    value: number;
-    time: number;
-  };
+  statToProve: ScoreStat;
   eventStatRoot: number[];
+  summary: ScoresBatchSummary;
   statProof: StatProofNode[];
   subTreeProof: StatProofNode[];
   mainTreeProof: StatProofNode[];
-  summary: {
-    fixtureId: number;
-    updateStats: {
-      updateCount: number;
-      minTimestamp: number;
-      maxTimestamp: number;
-    };
-    eventStatsSubTreeRoot: number[];
-  };
-  statToProve2?: {
-    value: number;
-    time: number;
-  };
+  statToProve2?: ScoreStat;
   statProof2?: StatProofNode[];
 }
+
+export type StatValidationResult = ScoresStatValidation;
+
+export type OddsPayload = OddsRecord;
 
 export interface StatProofNode {
   hash: number[];
