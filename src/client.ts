@@ -71,6 +71,13 @@ export class TxOddsClient {
     }
   }
 
+  private _saveCredentials(): void {
+    const dir = path.dirname(this.credentialsPath);
+    fs.mkdirSync(dir, { recursive: true });
+    const data = JSON.stringify({ apiToken: this._apiToken }, null, 2);
+    fs.writeFileSync(this.credentialsPath, data, { mode: 0o600 });
+  }
+
   static forNetwork(network: "mainnet" | "devnet"): TxOddsClient {
     return new TxOddsClient(network);
   }
@@ -98,6 +105,7 @@ export class TxOddsClient {
 
   setApiToken(token: string): this {
     this._apiToken = token;
+    this._saveCredentials();
     return this;
   }
 
@@ -246,7 +254,7 @@ export class TxOddsClient {
     } catch {
       token = text;
     }
-    this._apiToken = token;
+    this.setApiToken(token);
     return token;
   }
 
