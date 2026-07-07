@@ -421,6 +421,8 @@ export class TxOddsClient {
 
   static parseSseBlock(block: string): SseMessage | null {
     const message: SseMessage = { data: "" };
+    let hasData = false;
+    let hasEventOrId = false;
 
     for (const rawLine of block.split(/\r?\n/)) {
       if (!rawLine || rawLine.startsWith(":")) continue;
@@ -430,14 +432,14 @@ export class TxOddsClient {
         separatorIndex === -1
           ? ""
           : rawLine.slice(separatorIndex + 1).replace(/^ /, "");
-      if (field === "data") message.data += `${value}\n`;
-      if (field === "event") message.event = value;
-      if (field === "id") message.id = value;
+      if (field === "data") { message.data += `${value}\n`; hasData = true; }
+      if (field === "event") { message.event = value; hasEventOrId = true; }
+      if (field === "id") { message.id = value; hasEventOrId = true; }
       if (field === "retry") message.retry = Number(value);
     }
 
     message.data = message.data.replace(/\n$/, "");
-    return message.data || message.event || message.id ? message : null;
+    return hasData || hasEventOrId ? message : null;
   }
 
   static async *readSseMessages(response: Response): AsyncGenerator<SseMessage> {
