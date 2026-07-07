@@ -109,6 +109,15 @@ export class TxOddsClient {
     return this;
   }
 
+  clearCredentials(): void {
+    this._apiToken = null;
+    try {
+      fs.unlinkSync(this.credentialsPath);
+    } catch {
+      // File doesn't exist — no problem
+    }
+  }
+
   async authenticate(): Promise<string> {
     const res = await fetch(`${this.apiHost}/auth/guest/start`, {
       method: "POST",
