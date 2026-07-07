@@ -17,8 +17,13 @@ import { TXODDS_CONFIG, SUBSCRIBE_DISCRIMINATOR, PDA_SEEDS, NetworkConfig } from
 import {
   Fixture,
   OddsRecord,
+  OddsPayload,
   Scores,
   ScoresStatValidation,
+  FixtureValidation,
+  FixtureBatchValidation,
+  OddsValidation,
+  PurchaseQuoteResponse,
   SseMessage,
   SubscribeAccounts,
 } from "./types";
@@ -314,6 +319,40 @@ export class TxOddsClient {
     let path = `/scores/stat-validation?fixtureId=${fixtureId}&seq=${seq}&statKey=${statKey}`;
     if (statKey2 !== undefined) path += `&statKey2=${statKey2}`;
     return this._fetch(path);
+  }
+
+  async getFixturesUpdates(epochDay: number, hourOfDay: number): Promise<Fixture[]> {
+    return this._fetch(`/fixtures/updates/${epochDay}/${hourOfDay}`);
+  }
+
+  async getFixtureValidation(fixtureId: number, timestamp?: number): Promise<FixtureValidation> {
+    let path = `/fixtures/validation?fixtureId=${fixtureId}`;
+    if (timestamp !== undefined) path += `&timestamp=${timestamp}`;
+    return this._fetch(path);
+  }
+
+  async getFixtureBatchValidation(epochDay: number, hourOfDay: number): Promise<FixtureBatchValidation> {
+    return this._fetch(`/fixtures/batch-validation?epochDay=${epochDay}&hourOfDay=${hourOfDay}`);
+  }
+
+  async getOddsUpdates(fixtureId: number): Promise<OddsPayload[]> {
+    return this._fetch(`/odds/updates/${fixtureId}`);
+  }
+
+  async getOddsValidation(messageId: string, ts: number): Promise<OddsValidation> {
+    return this._fetch(`/odds/validation?messageId=${encodeURIComponent(messageId)}&ts=${ts}`);
+  }
+
+  async getPurchaseQuote(buyerPubkey: string, txlineAmount: number): Promise<PurchaseQuoteResponse> {
+    const res = await fetch(`${this.apiBase}/guest/purchase/quote`, {
+      method: "POST",
+      headers: this._requestHeaders(),
+      body: JSON.stringify({ buyerPubkey, txlineAmount }),
+    });
+    if (!res.ok) {
+      throw new Error(`TxODDS API ${res.status} on /guest/purchase/quote: ${await res.text()}`);
+    }
+    return res.json();
   }
 
   async *streamOdds(): AsyncGenerator<SseMessage> {
