@@ -1,6 +1,6 @@
 {
   "name": "@swingkiddo/txodds-client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TxODDS/TxLINE HTTP + on-chain API client — fixtures, odds, scores, subscription, and streams",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

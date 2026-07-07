@@ -1,6 +1,8 @@
 # @swingkiddo/txodds-client
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@swingkiddo/txodds-client)](https://www.npmjs.com/package/@swingkiddo/txodds-client)
+[![Changelog](https://img.shields.io/badge/changelog-md-blue)](CHANGELOG.md)
 
 TxODDS/TxLINE HTTP + on-chain API client — fixtures, odds, scores, on-chain subscription, and real-time SSE streams. Works with all TxLINE subscription tiers including the free World Cup tier.
 
