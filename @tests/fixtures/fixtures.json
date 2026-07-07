@@ -1,0 +1,43 @@
+[
+  {
+    "Ts": 1781787600000,
+    "StartTime": 1784386800000,
+    "Competition": "Friendlies",
+    "CompetitionId": 430,
+    "FixtureGroupId": 10116166,
+    "Participant1Id": 1378,
+    "Participant1": "Vietnam",
+    "Participant2Id": 1215,
+    "Participant2": "Myanmar",
+    "FixtureId": 18143850,
+    "Participant1IsHome": true
+  },
+  {
+    "Ts": 1783324800000,
+    "StartTime": 1783382400000,
+    "Competition": "World Cup",
+    "CompetitionId": 72,
+    "FixtureGroupId": 10115574,
+    "Participant1Id": 3220,
+    "Participant1": "USA",
+    "Participant2Id": 1575,
+    "Participant2": "Belgium",
+    "FixtureId": 18193785,
+    "Participant1IsHome": true,
+    "GameState": 1
+  },
+  {
+    "Ts": 1783324800000,
+    "StartTime": 1783440000000,
+    "Competition": "World Cup",
+    "CompetitionId": 72,
+    "FixtureGroupId": 10115574,
+    "Participant1Id": 1489,
+    "Participant1": "Argentina",
+    "Participant2Id": 1867,
+    "Participant2": "Egypt",
+    "FixtureId": 18202701,
+    "Participant1IsHome": true,
+    "GameState": 1
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "FixtureId": 18193785,
+    "GameState": "scheduled",
+    "StartTime": 1783382400000,
+    "IsTeam": true,
+    "FixtureGroupId": 10115574,
+    "CompetitionId": 72,
+    "CountryId": 466,
+    "SportId": 1,
+    "Participant1IsHome": true,
+    "Participant2Id": 1575,
+    "Participant1Id": 3220,
+    "CoverageSecondaryData": true,
+    "CoverageType": "TV/Stream",
+    "Action": "connected",
+    "Id": 4,
+    "Ts": 1783380093615,
+    "ConnectionId": 955,
+    "Seq": 4,
+    "Confirmed": true,
+    "Stats": {}
+  },
+  {
+    "FixtureId": 18193785,
+    "GameState": "scheduled",
+    "StartTime": 1783382400000,
+    "IsTeam": true,
+    "FixtureGroupId": 10115574,
+    "CompetitionId": 72,
+    "CountryId": 466,
+    "SportId": 1,
+    "Participant1IsHome": true,
+    "Participant2Id": 1575,
+    "Participant1Id": 3220,
+    "CoverageSecondaryData": true,
+    "CoverageType": "TV/Stream",
+    "Action": "action_amend",
+    "Id": 819,
+    "Ts": 1783388563783,
+    "ConnectionId": 955,
+    "Seq": 919,
+    "StatusId": 4,
+    "Type": "Soccer",
+    "Clock": {
+      "Running": true,
+      "Seconds": 4722
+    },
+    "Score": {
+      "Participant1": {
+        "H1": { "Goals": 1, "YellowCards": 1, "Corners": 1 },
+        "HT": { "Goals": 1, "YellowCards": 1, "Corners": 2 },
+        "H2": { "YellowCards": 1, "Corners": 1 },
+        "Total": { "Goals": 1, "YellowCards": 2, "Corners": 2 }
+      },
+      "Participant2": {
+        "H1": { "Goals": 2, "Corners": 3 },
+        "HT": { "Goals": 2, "Corners": 3 },
+        "H2": { "Goals": 1, "Corners": 2 },
+        "Total": { "Goals": 3, "Corners": 5 }
+      }
+    },
+    "Data": {
+      "Action": "shot",
+      "New": { "Clock": { "Running": true, "Seconds": 4705 }, "Outcome": "OffTarget" },
+      "Previous": { "Clock": { "Running": true, "Seconds": 4705 }, "Outcome": "OnTarget" }
+    },
+    "Stats": { "1": 1, "2": 3, "3": 2, "7": 2, "8": 5 },
+    "Participant": 1,
+    "Possession": 2,
+    "PossessionType": "SafePossession",
+    "PlayerStats": {
+      "Participant1": {
+        "806561": { "yellowCards": 1 },
+        "10095637": { "goals": 1, "yellowCards": 1 }
+      },
+      "Participant2": {
+        "494854": { "goals": 1 },
+        "1204158": { "goals": 2 }
+      }
+    }
+  },
+  {
+    "FixtureId": 18193785,
+    "GameState": "scheduled",
+    "StartTime": 1783382400000,
+    "IsTeam": true,
+    "FixtureGroupId": 10115574,
+    "CompetitionId": 72,
+    "CountryId": 466,
+    "SportId": 1,
+    "Participant1IsHome": true,
+    "Participant2Id": 1575,
+    "Participant1Id": 3220,
+    "CoverageSecondaryData": true,
+    "CoverageType": "TV/Stream",
+    "Action": "game_finalised",
+    "Id": 1003,
+    "Ts": 1783389876876,
+    "ConnectionId": 956,
+    "Seq": 1123,
+    "StatusId": 100,
+    "Score": {
+      "Participant1": {
+        "H1": { "Goals": 1, "YellowCards": 1, "Corners": 1 },
+        "HT": { "Goals": 1, "YellowCards": 1, "Corners": 2 },
+        "H2": { "YellowCards": 1, "Corners": 2 },
+        "Total": { "Goals": 1, "YellowCards": 2, "Corners": 3 }
+      },
+      "Participant2": {
+        "H1": { "Goals": 2, "Corners": 3 },
+        "HT": { "Goals": 2, "Corners": 3 },
+        "H2": { "Goals": 2, "Corners": 2 },
+        "Total": { "Goals": 4, "Corners": 5 }
+      }
+    },
+    "Stats": { "1": 1, "2": 4, "3": 2, "7": 3, "8": 5, "1001": 1, "1002": 2, "1003": 1, "1008": 3 },
+    "PlayerStats": {
+      "Participant1": {
+        "806561": { "yellowCards": 1 },
+        "10095637": { "goals": 1, "yellowCards": 1 }
+      },
+      "Participant2": {
+        "62639": { "goals": 1 },
+        "494854": { "goals": 1 },
+        "1204158": { "goals": 2 }
+      }
+    }
+  }
+]
